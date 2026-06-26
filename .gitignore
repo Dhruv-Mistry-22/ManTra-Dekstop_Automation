@@ -1,0 +1,40 @@
+# Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local Databases (Keep history local, don't push)
+*.db
+*.sqlite3
+data/*.db
+data/*.sqlite3
+
+# Logs
+*.log
+error_log.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# AI Desktop Automation specific
+evaluation/results.csv

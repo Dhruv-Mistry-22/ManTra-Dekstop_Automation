@@ -1,0 +1,222 @@
+utterance,true_intent,true_entity,category,phrasing_style
+open chrome,open_app,chrome,app_management,direct
+launch chrome,open_app,chrome,app_management,direct
+open spotify,open_app,spotify,app_management,direct
+launch spotify,open_app,spotify,app_management,direct
+open notepad,open_app,notepad,app_management,direct
+launch notepad,open_app,notepad,app_management,direct
+open discord,open_app,discord,app_management,direct
+launch discord,open_app,discord,app_management,direct
+open excel,open_app,excel,app_management,direct
+launch excel,open_app,excel,app_management,direct
+open vlc,open_app,vlc,app_management,direct
+launch vlc,open_app,vlc,app_management,direct
+open vscode,open_app,vscode,app_management,direct
+launch vscode,open_app,vscode,app_management,direct
+open steam,open_app,steam,app_management,direct
+launch steam,open_app,steam,app_management,direct
+open firefox,open_app,firefox,app_management,direct
+launch firefox,open_app,firefox,app_management,direct
+open calculator,open_app,calculator,app_management,direct
+launch calculator,open_app,calculator,app_management,direct
+bring up the browser,open_app,chrome,app_management,paraphrase
+can you open the browser,open_app,chrome,app_management,polite
+start the music player,open_app,spotify,app_management,paraphrase
+pull up discord,open_app,discord,app_management,paraphrase
+fire up vs code,open_app,vscode,app_management,informal
+i want to use notepad,open_app,notepad,app_management,natural
+get excel running,open_app,excel,app_management,paraphrase
+open my code editor,open_app,vscode,app_management,paraphrase
+close chrome,close_app,chrome,app_management,direct
+quit chrome,close_app,chrome,app_management,direct
+shut down chrome,close_app,chrome,app_management,paraphrase
+kill chrome,close_app,chrome,app_management,informal
+close notepad,close_app,notepad,app_management,direct
+quit notepad,close_app,notepad,app_management,direct
+shut down notepad,close_app,notepad,app_management,paraphrase
+kill notepad,close_app,notepad,app_management,informal
+close spotify,close_app,spotify,app_management,direct
+quit spotify,close_app,spotify,app_management,direct
+shut down spotify,close_app,spotify,app_management,paraphrase
+kill spotify,close_app,spotify,app_management,informal
+close discord,close_app,discord,app_management,direct
+quit discord,close_app,discord,app_management,direct
+shut down discord,close_app,discord,app_management,paraphrase
+kill discord,close_app,discord,app_management,informal
+close excel,close_app,excel,app_management,direct
+quit excel,close_app,excel,app_management,direct
+shut down excel,close_app,excel,app_management,paraphrase
+kill excel,close_app,excel,app_management,informal
+list running apps,list_apps,,app_management,direct
+show all open apps,list_apps,,app_management,paraphrase
+what apps are running,list_apps,,app_management,natural
+what is currently open,list_apps,,app_management,natural
+switch to discord,switch_app,discord,app_management,direct
+bring chrome to front,switch_app,chrome,app_management,direct
+focus on vs code,switch_app,vscode,app_management,direct
+don't open chrome,negation,open_app,negation,negated
+do not launch spotify,negation,open_app,negation,negated
+never close notepad,negation,close_app,negation,negated
+don't close discord,negation,close_app,negation,negated
+stop opening excel,negation,open_app,negation,negated
+cancel that,negation,,negation,negated
+forget it,negation,,negation,negated
+nevermind,negation,,negation,negated
+don't do that,negation,,negation,negated
+abort the command,negation,,negation,negated
+no wait don't open it,negation,open_app,negation,negated
+actually don't close it,negation,close_app,negation,negated
+don't shutdown,negation,shutdown_system,negation,negated
+don't restart,negation,restart_system,negation,negated
+don't delete that file,negation,delete_file,negation,negated
+create file report.txt,create_file,report.txt,file_management,direct
+make a new file report.txt,create_file,report.txt,file_management,paraphrase
+create file budget.xlsx,create_file,budget.xlsx,file_management,direct
+make a new file budget.xlsx,create_file,budget.xlsx,file_management,paraphrase
+create file notes.txt,create_file,notes.txt,file_management,direct
+make a new file notes.txt,create_file,notes.txt,file_management,paraphrase
+create folder projects,create_folder,projects,file_management,direct
+make a directory projects,create_folder,projects,file_management,paraphrase
+new folder called projects,create_folder,projects,file_management,natural
+create folder downloads,create_folder,downloads,file_management,direct
+make a directory downloads,create_folder,downloads,file_management,paraphrase
+new folder called downloads,create_folder,downloads,file_management,natural
+create folder backup,create_folder,backup,file_management,direct
+make a directory backup,create_folder,backup,file_management,paraphrase
+new folder called backup,create_folder,backup,file_management,natural
+delete report.txt,delete_file,report.txt,file_management,direct
+remove report.txt,delete_file,report.txt,file_management,paraphrase
+trash report.txt,delete_file,report.txt,file_management,informal
+get rid of report.txt,delete_file,report.txt,file_management,informal
+delete budget.xlsx,delete_file,budget.xlsx,file_management,direct
+remove budget.xlsx,delete_file,budget.xlsx,file_management,paraphrase
+trash budget.xlsx,delete_file,budget.xlsx,file_management,informal
+get rid of budget.xlsx,delete_file,budget.xlsx,file_management,informal
+delete notes.txt,delete_file,notes.txt,file_management,direct
+remove notes.txt,delete_file,notes.txt,file_management,paraphrase
+trash notes.txt,delete_file,notes.txt,file_management,informal
+get rid of notes.txt,delete_file,notes.txt,file_management,informal
+rename old.txt to new.txt,rename_file,old.txt,file_management,direct
+change the file name,rename_file,,file_management,paraphrase
+rename the document,rename_file,,file_management,natural
+move report.txt to downloads,move_file,report.txt,file_management,direct
+transfer the file,move_file,,file_management,paraphrase
+relocate report to backup,move_file,report.txt,file_management,paraphrase
+search for invoice,search_files,invoice,file_management,direct
+find a file called budget,search_files,budget,file_management,natural
+look for report,search_files,report,file_management,paraphrase
+where is my notes file,search_files,notes,file_management,natural
+find all pdfs,search_files,pdf,file_management,paraphrase
+search notes.txt,search_files,notes.txt,file_management,direct
+open report.txt,open_file,report.txt,file_management,direct
+show me budget.xlsx,open_file,budget.xlsx,file_management,natural
+list files in downloads,list_directory,downloads,file_management,direct
+what files are in this folder,list_directory,,file_management,natural
+show contents of projects,list_directory,projects,file_management,paraphrase
+shutdown the computer,shutdown_system,,system_control,direct
+turn off the pc,shutdown_system,,system_control,paraphrase
+power off,shutdown_system,,system_control,direct
+shut it down,shutdown_system,,system_control,informal
+switch off the computer,shutdown_system,,system_control,paraphrase
+restart the computer,restart_system,,system_control,direct
+reboot the pc,restart_system,,system_control,direct
+restart now,restart_system,,system_control,direct
+reboot windows,restart_system,,system_control,paraphrase
+lock the screen,lock_system,,system_control,direct
+lock my computer,lock_system,,system_control,direct
+lock it,lock_system,,system_control,informal
+sleep mode,sleep_system,,system_control,direct
+go to sleep,sleep_system,,system_control,natural
+put it to sleep,sleep_system,,system_control,informal
+log me out,logout_user,,system_control,direct
+sign out,logout_user,,system_control,direct
+log out of windows,logout_user,,system_control,paraphrase
+volume up,increase_volume,,system_control,direct
+make it louder,increase_volume,,system_control,paraphrase
+turn up the volume,increase_volume,,system_control,paraphrase
+increase the sound,increase_volume,,system_control,paraphrase
+volume down,decrease_volume,,system_control,direct
+make it quieter,decrease_volume,,system_control,paraphrase
+turn down the volume,decrease_volume,,system_control,paraphrase
+lower the sound,decrease_volume,,system_control,paraphrase
+mute,mute_volume,,system_control,direct
+mute the sound,mute_volume,,system_control,direct
+silence,mute_volume,,system_control,informal
+turn off the audio,mute_volume,,system_control,paraphrase
+unmute,mute_volume,,system_control,direct
+system info,get_system_info,,system_control,direct
+what are my specs,get_system_info,,system_control,natural
+show cpu usage,get_system_info,,system_control,paraphrase
+how much ram am i using,get_system_info,,system_control,natural
+type hello world,type_text,hello world,text_input,direct
+write this out for me,type_text,,text_input,natural
+type this message,type_text,,text_input,paraphrase
+write hello,type_text,hello,text_input,direct
+copy,copy_text,,text_input,direct
+copy the text,copy_text,,text_input,direct
+copy that,copy_text,,text_input,informal
+ctrl c,copy_text,,text_input,direct
+paste,paste_text,,text_input,direct
+paste here,paste_text,,text_input,direct
+paste the text,paste_text,,text_input,direct
+ctrl v,paste_text,,text_input,direct
+select all,select_all,,text_input,direct
+select everything,select_all,,text_input,paraphrase
+highlight all text,select_all,,text_input,paraphrase
+undo,undo_action,,text_input,direct
+undo that,undo_action,,text_input,direct
+undo last action,undo_action,,text_input,direct
+take that back,undo_action,,text_input,informal
+redo,redo_action,,text_input,direct
+redo that,redo_action,,text_input,direct
+redo the last thing,redo_action,,text_input,paraphrase
+close it,context_close,,context_dependent,pronoun
+open it again,context_open,,context_dependent,pronoun
+delete that,context_delete,,context_dependent,pronoun
+rename that file,context_rename,,context_dependent,pronoun
+move that to downloads,context_move,,context_dependent,pronoun
+open that again,context_open,,context_dependent,pronoun
+close the last one,context_close,,context_dependent,pronoun
+do that again,context_repeat,,context_dependent,pronoun
+undo what you just did,context_undo,,context_dependent,pronoun
+switch back to it,context_switch,,context_dependent,pronoun
+shut it down,context_close,,context_dependent,pronoun
+bring it back up,context_open,,context_dependent,pronoun
+delete the last file you made,context_delete,,context_dependent,pronoun
+rename it to final.txt,context_rename,,context_dependent,pronoun
+search for it,context_search,,context_dependent,pronoun
+that app again,context_open,,context_dependent,pronoun
+close that window,context_close,,context_dependent,pronoun
+open the same folder,context_open,,context_dependent,pronoun
+copy that file,context_copy,,context_dependent,pronoun
+where did you put it,context_search,,context_dependent,pronoun
+open it,ambiguous,,ambiguous,ambiguous
+do the thing,ambiguous,,ambiguous,ambiguous
+start,ambiguous,,ambiguous,ambiguous
+go,ambiguous,,ambiguous,ambiguous
+run it,ambiguous,,ambiguous,ambiguous
+make a file,ambiguous,,ambiguous,ambiguous
+open the app,ambiguous,,ambiguous,ambiguous
+close the window,ambiguous,,ambiguous,ambiguous
+delete it,ambiguous,,ambiguous,ambiguous
+do something with this,ambiguous,,ambiguous,ambiguous
+turn it on,ambiguous,,ambiguous,ambiguous
+launch,ambiguous,,ambiguous,ambiguous
+find the file,ambiguous,,ambiguous,ambiguous
+move this,ambiguous,,ambiguous,ambiguous
+run the program,ambiguous,,ambiguous,ambiguous
+open chrome then close notepad,multi_step,,multi_step,compound
+search invoice then open it,multi_step,,multi_step,compound
+create a folder then move report into it,multi_step,,multi_step,compound
+close discord and open spotify,multi_step,,multi_step,compound
+lock screen after closing chrome,multi_step,,multi_step,compound
+mute and then lock,multi_step,,multi_step,compound
+volume up then open spotify,multi_step,,multi_step,compound
+find budget.xlsx and delete it,multi_step,,multi_step,compound
+rename report then move it to backup,multi_step,,multi_step,compound
+close everything then shutdown,multi_step,,multi_step,compound
+create notes.txt and then open it,multi_step,,multi_step,compound
+list running apps and close chrome,multi_step,,multi_step,compound
+search for invoice then rename it,multi_step,,multi_step,compound
+open notepad type hello then save,multi_step,,multi_step,compound
+volume up and open music player,multi_step,,multi_step,compound
