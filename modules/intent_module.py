@@ -188,6 +188,13 @@ INTENT_EXAMPLES = {
     "type_text": [
         "type this text", "write hello world", "type something for me",
         "input this text", "type the words", "write out", "type hello",
+        "type how are you", "type good morning", "type I am fine",
+        "write good morning", "say hello there", "enter the text hello",
+        "type nice to meet you", "write this for me",
+        "type a message", "write a sentence", "type some text",
+        "type thank you", "write thank you very much",
+        "type my name is john", "type the password",
+        "write out the message", "input the text good day",
     ],
     "insert_predefined_text": [
         "insert email template", "insert greeting", "paste the preset",
@@ -234,12 +241,28 @@ INTENT_EXAMPLES = {
         "display saved macros", "show recorded workflows",
     ],
 
-    # ── Screen Vision ─────────────────────────────────────────────────────────
+    # ── Screen Vision ─────────────────────────────────────────────────
     "read_screen": [
         "read what is on screen", "what does the screen say",
         "read the error message", "read the dialog box",
         "what is displayed on screen", "read screen text",
         "tell me what is on screen",
+    ],
+
+    # ── Undo / Context Delete ───────────────────────────────────────
+    "undo_last_action": [
+        "delete what you just created", "undo last", "delete the last file you made",
+        "remove what you just made", "undo the last thing", "delete that file you created",
+        "undo last creation", "remove the file you just created",
+        "delete the last created file", "undo that", "remove what I just created",
+        "delete last", "undo create", "cancel that creation",
+    ],
+
+    # ── Desktop Listing ─────────────────────────────────────────────────
+    "list_desktop": [
+        "show desktop files", "what is on my desktop", "list desktop",
+        "show me my desktop", "what files are on the desktop",
+        "list all files on desktop", "desktop files", "show desktop",
     ],
 }
 
@@ -410,6 +433,12 @@ def _keyword_fallback(command_text: str) -> str:
         return "create_file"
     if "create" in words and ("folder" in words or "directory" in words):
         return "create_folder"
+    # ── undo_last MUST come before delete_file ─────────────────────────────────
+    # "delete last file" has both "delete" and "file" — without this guard it
+    # would incorrectly match delete_file instead of undo_last_action.
+    if ("undo" in words or "delete" in words) and \
+       ("last" in words or "created" in words or "just" in words):
+        return "undo_last_action"
     if "delete" in words and "file" in words:
         return "delete_file"
     if "delete" in words and "folder" in words:
@@ -426,8 +455,9 @@ def _keyword_fallback(command_text: str) -> str:
         return "decrease_volume"
     if "mute" in words:
         return "mute_volume"
-    if "type" in words:
+    if "type" in words or "write" in words or "say" in words:
         return "type_text"
+
     if "copy" in words:
         return "copy_text"
     if "paste" in words:
@@ -436,4 +466,7 @@ def _keyword_fallback(command_text: str) -> str:
         return "undo_action"
     if "redo" in words:
         return "redo_action"
+    if "desktop" in words and ("list" in words or "show" in words or "what" in words):
+        return "list_desktop"
     return "unknown"
+

@@ -1,0 +1,131 @@
+================================================================================
+                    MANTRA AI DESKTOP AUTOMATION V2
+                            USER GUIDE
+================================================================================
+
+Welcome to ManTra V2. This document explains how to use each command natively
+supported by the system, and highlights 8 advanced functionalities that make
+this system exceptionally powerful compared to standard voice assistants.
+
+--------------------------------------------------------------------------------
+PART 1: COMMAND REFERENCE
+--------------------------------------------------------------------------------
+
+1. SYSTEM & POWER CONTROL
+   • "shutdown system" -> Shuts down Windows safely (with a 5-sec delay)
+   • "restart system" -> Restores the PC
+   • "lock system" -> Locks the Windows session
+   • "logout user" -> Logs out of the current Windows user profile
+   • "sleep system" -> Puts the PC into suspend/sleep mode
+   • "system info" -> Reads out your OS, processor, and Python specs
+
+2. VOLUME & AUDIO CONTROL
+   • "volume up" -> Increases system volume by ~10%
+   • "volume down" -> Decreases system volume by ~10%
+   • "mute volume" -> Mutes/unmutes the system audio
+
+3. FILE & FOLDER MANAGEMENT
+   • "create file [name]" -> Creates an empty .txt file on the Desktop and opens Explorer.
+   • "create folder [name]" -> Creates an empty folder on the Desktop.
+   • "open [file name]" -> Smartly searches the Desktop and indexed files, then opens it.
+   • "open [folder name]" -> Opens a directory in File Explorer.
+   • "delete file [name]" -> Deletes a specified file with fuzzy-name search.
+   • "rename file [old] to [new]" -> Renames a file.
+   • "move file [source] to [destination]" -> Moves a file.
+   • "search file [name]" -> Performs a rapid fuzzy search across common user directories.
+   • "list desktop files" -> Shows you a list of everything on your Desktop.
+
+4. APPLICATION MANAGEMENT
+   • "open [app name]" -> Launches the application (e.g., "open chrome").
+   • "switch to [app name]" -> Brings an already running app to the front.
+   • "close [app name]" -> Safely terminates the application.
+   • "list apps" -> Lists all currently running applications.
+
+5. TEXT INPUT & KEYBOARD ASSISTANCE
+   • "type [sentence]" -> Types exactly what you say into the active window. (e.g., "type how are you today").
+   • "insert greeting" -> Types a predefined template (like an email signature or date/time).
+   • "select all" -> Highlights all text (Ctrl+A).
+   • "copy text" -> Copies selected text (Ctrl+C).
+   • "paste text" -> Pastes copied text (Ctrl+V).
+   • "undo action" -> Sends a keyboard Undo command (Ctrl+Z) to the active app.
+   • "redo action" -> Sends a keyboard Redo command (Ctrl+Y) to the active app.
+
+6. CONTEXT & MEMORY CONTROLS (PRONOUNS)
+   • "undo last" or "delete what you just created" -> Automatically deletes the file/folder ManTra just made.
+   • "open it" -> Opens the last file or app you interacted with.
+   • "close that" -> Closes the last application you were using.
+
+7. WORKFLOW MACROS (AUTOMATION)
+   • "record macro" -> Begins recording your physical keyboard presses.
+   • "stop recording" -> Saves your actions into a playable macro.
+   • "play macro [name]" -> Plays back those physical inputs automatically.
+   • "list macros" -> Lists all saved workflows.
+
+8. SCREEN VISION
+   • "read screen" -> Captures your active screen and reads text using OCR.
+
+
+--------------------------------------------------------------------------------
+PART 2: 8 UNIQUE FUNCTIONALITIES OF MANTRA V2 (Differentiators)
+--------------------------------------------------------------------------------
+While a standard voice assistant (like "Isha") might just execute rigid commands, 
+ManTra is built with a highly intelligent, state-based V2 pipeline. 
+
+Here is a direct comparison showing the massive upgrade over older systems:
+
+| # | ManTra Category            | ISHA Equivalent         |
+|---|----------------------------|-------------------------|
+| 1 | App Management             | Application Case  [✓]   |
+| 2 | File Management            | File Case         [✓]   |
+| 3 | System Control             | Not present       [✗]   |
+| 4 | Text Input                 | Not present       [✗]   |
+| 5 | Negation Handling          | Not present       [✗]   |
+| 6 | Context Dependent (Memory) | Not present       [✗]   |
+| 7 | Ambiguous Detection        | Not present       [✗]   |
+| 8 | Multi-Step Compound        | Not present       [✗]   |
+
+Below is how ManTra implements these advanced features:
+
+1. CONTEXTUAL MEMORY BANK (PRONOUN RESOLUTION)
+   ManTra remembers your last 10 actions. You don't have to constantly repeat 
+   yourself. If you say "create file budget", you can immediately say "open it" 
+   or "delete that", and ManTra knows exactly what "it" and "that" refers to.
+
+2. INSTANT ACTION UNDO
+   If you make a mistake, you can simply say "undo last creation" or "delete what 
+   you just made". The MemoryBank safely traces back and deletes the exact file 
+   or folder without you having to specify the name or path.
+
+3. ADAPTIVE LEARNING (SELF-CORRECTING NLP)
+   ManTra maintains a 'CorrectionStore' database. If it misunderstands a command, 
+   it learns from the correction. Over time, it maps your unique speech patterns 
+   and phrases directly to intents using semantic thresholding.
+
+4. ENTITY-AWARE NEURAL INTENT DETECTION
+   Instead of struggling with unknown words (like a brand new app name), ManTra 
+   uses an Entity-Aware NLP pipeline. It strips out the specific name (converting 
+   "open Spotify" into "open [APP]") before running it through the AI embedding 
+   model, resulting in near-perfect intent routing regardless of vocabulary.
+
+5. BACKGROUND ASYNCHRONOUS FILE INDEXING
+   ManTra builds a fuzzy-search index of your Documents, Desktop, and Downloads 
+   asynchronously in a background thread. When you say "open budget", it uses 
+   RapidFuzz algorithms to instantly find and open the closest matching file, 
+   even if you don't provide the exact extension or path.
+
+6. HARDWARE-NATIVE MACRO RECORDING
+   ManTra doesn't just click UI elements; it features a low-level pynput hook 
+   that literally records and replicates your physical keyboard and mouse strokes. 
+   You can teach it complex workflows and trigger them entirely by voice.
+
+7. FULL-SENTENCE TEXT PRESERVATION
+   Unlike basic assistants that strip out "stop words" (like "how", "are", "you"), 
+   ManTra intelligently switches to raw Regex extraction during text input commands. 
+   Saying "type how are you" perfectly types the whole sentence without losing grammar.
+
+8. THREAD-SAFE DUAL SQLITE DATABASE ARCHITECTURE
+   ManTra handles a background voice-listener thread, background TTS thread, and 
+   main execution thread simultaneously. It uses SQLite WAL (Write-Ahead Logging) 
+   so the system can continuously record commands, measure execution latency, and 
+   learn adaptively without ever locking up the UI or stuttering the audio.
+================================================================================

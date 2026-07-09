@@ -227,8 +227,10 @@ NORMALIZED_INTENT_EXAMPLES = {
     "mute_volume":     ["mute", "silence the audio", "mute the sound", "unmute"],
     "get_system_info": ["system info", "what are my specs", "show cpu usage",
                         "how much ram am i using"],
-    "type_text":       ["type [FILE]", "write this out", "type this message",
-                        "input text"],
+    "type_text":       ["type how are you", "write good morning", "type this message",
+                        "input text here", "type some words", "write a sentence",
+                        "say hello there", "enter the text", "type thank you"],
+
     "copy_text":       ["copy", "copy the text", "ctrl c", "copy that"],
     "paste_text":      ["paste", "paste here", "ctrl v", "paste the text"],
     "select_all":      ["select all", "highlight all text", "ctrl a",
@@ -251,7 +253,19 @@ NORMALIZED_INTENT_EXAMPLES = {
     "context_switch":  ["switch back to it"],
     "context_search":  ["search for it", "where did you put it"],
     "context_copy":    ["copy that file"],
+    "undo_last_action": [
+        "delete what you just created", "undo last creation",
+        "remove the file you just made", "delete the last file you created",
+        "undo that file creation", "delete last", "cancel the last creation",
+        "remove what you just created",
+    ],
+    "list_desktop": [
+        "show desktop files", "what is on my desktop",
+        "list desktop contents", "show me my desktop",
+        "what files are on the desktop", "list files on desktop",
+    ],
 }
+
 
 
 def build_normalized_embeddings(model):

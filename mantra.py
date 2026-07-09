@@ -385,14 +385,9 @@ class LaunchMenu(QDialog):
     def start_gui(self):
         try:
             from gui.gui_app import MantraGUI
+            self.gui_window = MantraGUI()
+            self.gui_window.show()
             self.close()
-            app = QApplication.instance()
-            if app is None:
-                app = QApplication(sys.argv)
-            app.setStyle("Fusion")
-            window = MantraGUI()
-            window.show()
-            app.exec_()
         except Exception as e:
             print(f"Error starting GUI: {e}")
 

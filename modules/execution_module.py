@@ -3,7 +3,8 @@ from modules.app_controller import open_or_switch_app, close_app, list_running_a
 from modules.file_manager import (
     create_file, create_folder, open_file, open_folder,
     rename_file, rename_folder, delete_file, delete_folder,
-    search_files, move_file, list_files
+    search_files, move_file, list_files,
+    list_desktop_files, undo_last_creation
 )
 from modules.system_control import (
     shutdown_system, restart_system, lock_system, logout_user,
@@ -74,6 +75,94 @@ def remove_action_keyword(keywords, action_words):
     """Remove action keywords from keywords list"""
     return [k for k in keywords if k.lower() not in action_words]
 
+
+# ── Filename / foldername extraction helpers ──────────────────────────────────
+
+_FILE_FILLER = {
+    "create", "make", "new", "file", "called", "named",
+    "call", "name", "a", "an", "the", "empty", "blank",
+    "text", "document", "generate", "build", "please",
+}
+
+_FOLDER_FILLER = {
+    "create", "make", "new", "folder", "directory", "dir",
+    "called", "named", "call", "name", "a", "an", "the", "mkdir",
+}
+
+import re as _re
+
+def _extract_filename(keywords: list, full_command: str) -> str:
+    """
+    Extract a clean filename from the user command.
+
+    Priority order:
+      1. A token that already contains a file extension (e.g. 'report.txt')
+      2. Quoted name in full_command  (e.g. 'create file "my notes"')
+      3. The word(s) after 'called'/'named' in full_command
+      4. Keywords after stripping all filler words
+      5. Fallback: 'newfile.txt'
+
+    Always ensures the result has a .txt extension if none was given,
+    and replaces spaces with underscores.
+    """
+    # 1. Token with extension already present
+    for kw in keywords:
+        if _re.match(r'.+\.\w{2,5}$', kw):
+            return kw
+
+    # 2. Quoted string in the raw command
+    quoted = _re.search(r'["\'](.+?)["\']', full_command)
+    if quoted:
+        name = quoted.group(1).strip()
+        if name:
+            return _sanitize_name(name, is_file=True)
+
+    # 3. Word(s) after 'called' or 'named'
+    after = _re.search(r'\b(?:called|named)\s+(\S+)', full_command.lower())
+    if after:
+        name = after.group(1).strip().strip(".,!?")
+        if name:
+            return _sanitize_name(name, is_file=True)
+
+    # 4. Strip filler and join remaining keywords
+    parts = [k for k in keywords if k.lower() not in _FILE_FILLER]
+    name = "_".join(parts).strip("_")
+    if name:
+        return _sanitize_name(name, is_file=True)
+
+    return "newfile.txt"
+
+
+def _extract_foldername(keywords: list, full_command: str) -> str:
+    """
+    Extract a clean folder name from the user command.
+    Same logic as _extract_filename but for folders (no extension added).
+    """
+    # Quoted string
+    quoted = _re.search(r'["\'](.+?)["\']', full_command)
+    if quoted:
+        name = quoted.group(1).strip()
+        if name:
+            return name.replace(" ", "_")
+
+    # Word(s) after 'called' or 'named'
+    after = _re.search(r'\b(?:called|named)\s+(\S+)', full_command.lower())
+    if after:
+        return after.group(1).strip().strip(".,!?")
+
+    # Strip filler
+    parts = [k for k in keywords if k.lower() not in _FOLDER_FILLER]
+    name = "_".join(parts).strip("_")
+    return name if name else "newfolder"
+
+
+def _sanitize_name(name: str, is_file: bool = True) -> str:
+    """Replace spaces with underscores and auto-add .txt for files without extension."""
+    name = name.replace(" ", "_")
+    if is_file and "." not in name:
+        name = name + ".txt"
+    return name
+
 def execute_task(intent, keywords, full_command=""):
     # ── Pronoun resolution (NEW) ──────────────────────────────────────────────
     # Before routing, substitute any pronoun/reference token with the last
@@ -114,32 +203,49 @@ def execute_task(intent, keywords, full_command=""):
     
     # File and Folder Management
     elif intent == "create_file":
-        file_path = " ".join(remove_action_keyword(keywords, ["create", "file"])).strip()
-        if not file_path:
-            file_path = "newfile.txt"
+        file_path = _extract_filename(keywords, full_command)
         result = create_file(file_path)
         memory.update("created", "file", file_path)  # NEW
         return result
     
     elif intent == "create_folder":
-        folder_path = " ".join(remove_action_keyword(keywords, ["create", "folder", "directory"])).strip()
-        if not folder_path:
-            folder_path = "newfolder"
+        folder_path = _extract_foldername(keywords, full_command)
         result = create_folder(folder_path)
         memory.update("created", "folder", folder_path)  # NEW
         return result
     
     elif intent == "open_file_folder":
-        path = " ".join(remove_action_keyword(keywords, ["open", "file", "folder"])).strip()
+        import re as _re3
+        # Extract target name from raw command (preserves stop words like "my", "the")
+        # e.g. "open report.txt"  → "report.txt"
+        #      "open my notes"    → "my notes" → cleaned to "notes"
+        #      "open downloads folder" → "downloads"
+        target_match = _re3.search(
+            r'\b(?:open|show|launch|browse)\s+(?:the\s+|my\s+|a\s+)?(.+?)(?:\s+(?:file|folder|directory))?$',
+            full_command.strip().lower()
+        )
+        path = target_match.group(1).strip() if target_match else ""
+        # Strip trailing filler words that may have been captured
+        path = _re3.sub(r'\b(?:please|now|for me)\b', '', path).strip()
+
+        # Pronoun fallback ("open it", "open that file")
+        if not path or path in {"it", "that", "the file", "that file", "the folder"}:
+            last = memory.get_last()
+            if last:
+                path = last["entity_value"]
+
         if not path:
-            path = ""
-        if "file" in full_command.lower():
-            result = open_file(path)
-            memory.update("opened", "file", path)    # NEW
-        else:
+            path = " ".join(remove_action_keyword(keywords, ["open", "file", "folder"])).strip()
+
+        # Route: if command mentions "folder" or path has no extension → open folder
+        if "folder" in full_command.lower() or "directory" in full_command.lower():
             result = open_folder(path)
-            memory.update("opened", "folder", path)  # NEW
+            memory.update("opened", "folder", path)
+        else:
+            result = open_file(path)
+            memory.update("opened", "file", path)
         return result
+
     
     elif intent == "rename_file":
         if len(keywords) >= 2:
@@ -220,12 +326,33 @@ def execute_task(intent, keywords, full_command=""):
     
     # Text Input Assistance
     elif intent == "type_text":
-        text = " ".join(remove_action_keyword(keywords, ["type"])).strip()
+        # ── Extract text from the RAW command, not NLP keywords ──────────────
+        # Reason: NLP strips stop words ("how", "are", "you", "I", etc.) so
+        # "type how are you" → keywords=["type"] → nothing left to type.
+        # Using a regex on full_command preserves the complete phrase.
+        import re as _re2
+        text = ""
+
+        # Match everything after the trigger verb
+        trigger_match = _re2.search(
+            r'\b(?:type|write|input|say|enter|write\s+out)\s+(.+)',
+            full_command.strip().lower()
+        )
+        if trigger_match:
+            text = trigger_match.group(1).strip()
+
+        # Fallback: if regex didn't capture anything, join keywords without "type"
         if not text:
-            text = " ".join(keywords)
+            text = " ".join(remove_action_keyword(keywords, ["type", "write", "input", "say", "enter"])).strip()
+
+        # Last resort: use the full command minus common filler
+        if not text:
+            text = full_command.strip()
+
         result = type_text(text)
         memory.update("typed", "text", text)  # NEW
         return result
+
     
     elif intent == "insert_predefined_text":
         preset_type = keywords[0] if keywords else "greeting"
@@ -259,6 +386,13 @@ def execute_task(intent, keywords, full_command=""):
 
     elif intent == "read_screen":
         return _read_screen()
+
+    elif intent == "undo_last_action":
+        # Delete / reverse the last thing Mantra created in this session
+        return undo_last_creation(memory)
+
+    elif intent == "list_desktop":
+        return list_desktop_files()
 
     elif intent == "unknown":
         # Only attempt app launch if a known app-like keyword is present
