@@ -37,6 +37,9 @@ python -m spacy download en_core_web_md
 
 > **Note:** For the Screen Vision feature (`read screen`), install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) separately and add it to your system PATH.
 
+> **Note:** The `data/` folder (containing `mantra_v2.db`) is not included in this repository — it is excluded by `.gitignore` to protect local command history and user data. The folder and database are **created automatically on first run**. No manual setup is needed.
+
+
 ---
 
 ## How to Run
@@ -75,7 +78,7 @@ Run it yourself:
 python evaluation/benchmark.py
 ```
 
-The ManTra V2 hybrid NLP pipeline (entity-aware sentence embeddings + keyword fallback) achieves **92%+ intent accuracy** across 35+ command categories on real-world phrasing variations.
+The ManTra V2 hybrid NLP pipeline (entity-aware sentence embeddings + keyword fallback) achieves **86.88% intent accuracy** across 35+ command categories on real-world phrasing variations.
 
 | Category | ManTra V2 | ISHA (baseline) |
 |---|---|---|
