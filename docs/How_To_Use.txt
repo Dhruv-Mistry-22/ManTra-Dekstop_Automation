@@ -1,0 +1,150 @@
+================================================================================
+                    MANTRA — HOW TO USE IT
+                    A Simple Guide for Users
+================================================================================
+
+This guide is for anyone using ManTra for the first time.
+No technical knowledge needed. Just read and follow along.
+
+--------------------------------------------------------------------------------
+STEP 1 — START MANTRA
+--------------------------------------------------------------------------------
+
+Double-click the ManTra window, or open a terminal and type:
+
+    python mantra.py
+
+A launch screen will appear. You have two choices:
+
+    • VOICE MODE   — Speak your commands out loud
+    • TEXT MODE    — Type your commands instead
+
+Pick whichever feels comfortable. Both do the exact same thing.
+
+--------------------------------------------------------------------------------
+STEP 2 — GIVE A COMMAND
+--------------------------------------------------------------------------------
+
+Just speak or type naturally. ManTra understands plain English.
+
+You do NOT need to memorize exact phrases. These all work the same way:
+
+    "open Chrome"
+    "launch Chrome"
+    "start the browser"
+
+ManTra figures out what you mean.
+
+--------------------------------------------------------------------------------
+STEP 3 — LISTEN TO THE RESPONSE
+--------------------------------------------------------------------------------
+
+After every command, ManTra will:
+
+    • Speak back to confirm what it did   (e.g. "Opened Chrome")
+    • Show the result on screen
+
+If it didn't understand, it will say so and ask you to try again.
+
+--------------------------------------------------------------------------------
+WHAT CAN YOU ASK MANTRA TO DO?
+--------------------------------------------------------------------------------
+
+Here are the most useful things, written the way you would say them:
+
+  OPEN APPS
+  ---------
+  "open Notepad"
+  "open Spotify"
+  "open Chrome"
+  "switch to Discord"
+  "close Notepad"
+
+  FILES & FOLDERS
+  ---------------
+  "create a file called budget"          → makes budget.txt on your Desktop
+  "create a folder called Projects"      → makes a Projects folder on Desktop
+  "open budget"                          → finds and opens budget.txt
+  "delete file budget"                   → deletes it
+  "search for invoice"                   → finds any file with that name
+  "show desktop files"                   → lists everything on your Desktop
+
+  UNDO MISTAKES
+  -------------
+  "undo last"                            → deletes the last file ManTra made
+  "delete what you just created"         → same thing
+
+  TYPING FOR YOU
+  --------------
+  "type how are you"                     → types those exact words wherever
+  "write good morning team"              → types that sentence
+  "copy"                                 → copies selected text (Ctrl+C)
+  "paste"                                → pastes (Ctrl+V)
+  "undo"                                 → undoes last action in an app (Ctrl+Z)
+
+  SYSTEM CONTROL
+  --------------
+  "volume up"
+  "volume down"
+  "mute"
+  "lock screen"
+  "shutdown"                             → shuts down after 5 seconds
+  "restart"
+  "system info"                          → tells you your CPU, RAM, etc.
+
+  SCREEN READER
+  -------------
+  "read screen"                          → reads all visible text on screen aloud
+                                           (useful for reading error messages)
+
+  MACROS (RECORD & REPLAY)
+  ------------------------
+  "record macro"                         → starts recording your keystrokes
+  "stop recording"                       → saves the recording
+  "play macro"                           → replays those actions automatically
+  "list macros"                          → shows all saved recordings
+
+--------------------------------------------------------------------------------
+TIPS FOR BEST RESULTS
+--------------------------------------------------------------------------------
+
+  ✓  Speak clearly and at a normal pace. No need to shout.
+
+  ✓  You can use pronouns. ManTra remembers context:
+        "open Notepad"  →  then say  "close it"
+        "create file report"  →  then say  "open it"
+
+  ✓  If ManTra doesn't understand, just rephrase:
+        Instead of: "initiate file creation protocol"
+        Try:        "create a new file"
+
+  ✓  For file names with multiple words, just say them naturally:
+        "create file monthly report"   → makes monthly_report.txt
+
+  ✗  Do NOT say: "Hey Mantra, could you please perhaps open Chrome?"
+     DO say:     "open Chrome"
+     (Short and direct always works better)
+
+--------------------------------------------------------------------------------
+COMMON QUESTIONS
+--------------------------------------------------------------------------------
+
+Q: It opened the wrong app. What do I do?
+A: Just close it: "close [app name]"
+
+Q: I created a file by mistake. How do I remove it?
+A: Say "undo last" right away.
+
+Q: It said "Command not recognized." What now?
+A: Try rephrasing with simpler words. E.g. instead of "terminate the process",
+   say "close Spotify".
+
+Q: Can I use it without a microphone?
+A: Yes. Run  python mantra.py  and use the text input bar at the bottom.
+
+Q: Does it need the internet?
+A: No. ManTra runs completely offline. Nothing leaves your computer.
+
+================================================================================
+That's all you need to know to get started.
+================================================================================
